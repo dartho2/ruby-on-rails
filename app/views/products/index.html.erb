@@ -1,0 +1,24 @@
+<table class="table">
+  <tr>
+    <td>ID</td>
+    <td>PARENT ID</td>
+    <td>Name</td>
+    <td>Price</td>
+  </tr>
+
+  <% @products.each do |product| %>
+      <tr>
+        <td><%= product.id %></td>
+        <td><%= product.parent_id %></td>
+        <td><%= product.name %></td>
+        <td><%= product.price %></td>
+        <td>
+          <%= link_to 'Delete', product, method: :delete, class: 'btn btn-danger' %>
+          <%= link_to 'Edit', edit_product_path(product), class: 'btn btn-warning' %>
+        </td>
+      </tr>
+
+  <% end %>
+</table>
+
+<%= link_to 'New', new_product_path, class: 'btn btn-success'%>
