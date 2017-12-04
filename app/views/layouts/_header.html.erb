@@ -1,0 +1,19 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+
+  <title><%= @title %></title>
+
+  <div class="container">
+    <%= link_to "App-li-cat-i-one", '#', id: "logo" %>
+    <nav>
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "Produkty", products_path %></li>
+        <li><%= link_to "Kategorie", categories_path  %></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<% if flash[:alert] -%>
+    <div class = "alert alert-success"><%= notice %> <%= alert %></div>
+<% end %>
+
