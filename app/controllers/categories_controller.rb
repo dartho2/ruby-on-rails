@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
 
   def index
-    @categories = Category.all
+    @categories = Category.where(deleted: false)
   end
 
   def new
@@ -19,7 +19,8 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    Category.find(params[:id]).delete
+    Category.find(params[:id]).update(deleted: true)
+
     redirect_to categories_path
   end
 
