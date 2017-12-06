@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
 
   def index
     @products = []
-    products = Product.all
+    products = Product.where(deleted: false)
     products.each do |product|
       @products.push(product) unless Product.where(parent_id: product.id).any?
     end
@@ -11,11 +11,12 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
-    @product.build_category
   end
 
   def destroy
-    @product = Product.find(params[:id]).delete
+    @product = Product.find(params[:id])
+    @product.update(deleted: true)
+
     redirect_to products_path
   end
 
@@ -24,15 +25,14 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @product = Product.find(params[:id])
-    @product = Product.new(update_params)
+    @product = Product.new(update_params(params[:id]))
 
-    if @product.update(product_params)
-      flash[:success] = "Produkt - #{@product.name}  -został zaktualizowany"
+    if @product.save
+      flash[:success] = "Produkt - #{@product.name}  - został zaktualizowany"
       redirect_to products_path
     else
       flash[:warning] = "Błąd aktualizacji - #{@product.name} "
-      redirect_to products_path
+      render 'new'
     end
   end
 
@@ -47,12 +47,13 @@ class ProductsController < ApplicationController
   end
 
   private
+
   def product_params
     params.require(:product).permit(:name, :id, :parent_id, :price, :category_id,)
   end
 
-  def update_params
-    params.require(:product).permit(:name, :id, :parent_id, :price, :category_id,).merge(parent_id: @product.id)
+  def update_params parent_id
+    params.require(:product).permit(:name, :id, :parent_id, :price, :category_id).merge(parent_id: parent_id)
   end
 
 end
