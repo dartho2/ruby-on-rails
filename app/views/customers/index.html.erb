@@ -1,0 +1,19 @@
+<table class="table">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+  </tr>
+  </thead>
+  <% @customer.each do |customer| %>
+      <tr>
+        <td><%= customer.id %></td>
+        <td><%= customer.name %></td>
+        <td><%= link_to 'Delete', customer, method: :delete, class: 'btn btn-danger' %>
+          <%= link_to 'Edit', edit_customer_path(customer), class: 'btn btn-warning' %></td>
+      </tr>
+
+  <% end %>
+</table>
+
+<%= link_to 'New', new_customer_path, class: 'btn btn-success' %>
