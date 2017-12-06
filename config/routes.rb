@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :products
   resources :customers
   resources :orders
-
+  resources :product_orders
 
   root 'products#index'
 end

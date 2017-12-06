@@ -1,4 +1,4 @@
 class Customer < ApplicationRecord
   validates :name, presence: true, length: { minimum: 3 }
-  has_many :order
+  has_many :order, :dependent => :destroy
 end

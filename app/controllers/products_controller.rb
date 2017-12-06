@@ -27,7 +27,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @product = Product.new(update_params)
 
-    if @product.up(product_params)
+    if @product.update(product_params)
       flash[:success] = "Produkt - #{@product.name}  -został zaktualizowany"
       redirect_to products_path
     else

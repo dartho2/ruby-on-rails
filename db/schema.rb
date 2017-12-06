@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171206140835) do
+ActiveRecord::Schema.define(version: 20171206170526) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "name"
@@ -32,8 +32,13 @@ ActiveRecord::Schema.define(version: 20171206140835) do
   end
 
   create_table "product_orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.bigint "product_id"
+    t.bigint "order_id"
+    t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_product_orders_on_order_id"
+    t.index ["product_id"], name: "index_product_orders_on_product_id"
   end
 
   create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -47,4 +52,6 @@ ActiveRecord::Schema.define(version: 20171206140835) do
   end
 
   add_foreign_key "orders", "customers"
+  add_foreign_key "product_orders", "orders"
+  add_foreign_key "product_orders", "products"
 end
