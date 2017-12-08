@@ -10,18 +10,17 @@
 #   http://dev.mysql.com/doc/refman/5.7/en/old-client.html
 #
 default: &default
-  adapter: sqlite3
+  adapter: mysql2
+  encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
+  username: root
+  password:
+  host: 127.0.0.1
 
 development:
   <<: *default
-<<<<<<< HEAD
   database: ruby3
-=======
-  database: db/development.sqlite3
 
->>>>>>> 7704fe6670a2a68f39cfa52b4f76d1712e0350a8
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
