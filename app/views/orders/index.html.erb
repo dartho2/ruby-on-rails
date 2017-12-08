@@ -3,13 +3,17 @@
   <tr>
     <th>ID</th>
     <th>Customer</th>
+    <th>Zamowienie</th>
+    <th>Quantity</th>
   </tr>
   </thead>
   <% @orders.each do |order| %>
       <tr>
         <td><%= order.id %></td>
         <td><%= order.customer.name %></td>
-        <td><%= order.product.name %></td>
+        <td><%= order.product.map(&:name).join(', ') %></td>
+        <td><%= order.product_order.map(&:quantity).join(', ') %></td>
+
 
         <td>
           <%= link_to "Delete", order, method: :delete, class: 'btn btn-danger' %>

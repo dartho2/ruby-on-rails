@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
   def index
-    @customer = Customer.all
+    @customer = Customer.where(deleted: false)
   end
 
   def new
@@ -34,20 +34,17 @@ class CustomersController < ApplicationController
   end
 
   def destroy
-    if @customer = Customer.find(params[:id]).destroy
-      if @customer.destroy
-        flash[:success] = "Usunieto użytkownika #{@customer.name}"
-        redirect_to customers_path
-      else
-      end
-    else
-      flash[:success] ="Customer exists in Order #{@customer.id}"
-      redirect_to customers_path
-    end
+    Customer.find(params[:id]).update(deleted: true)
+
+    flash[:success] = "Usunieto użytkownika"
+    redirect_to customers_path
   end
 
+
   private
+
   def customer_params
     params.require(:customer).permit(:name)
   end
+
 end
