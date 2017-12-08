@@ -9,6 +9,8 @@ class Product < ApplicationRecord
 #  belongs_to :category
 #
 #   nie można utworzyc orderu  kiedy jest.. ##TODO
+
+
   has_many :product_order
   has_many :order, through: :product_order
 end

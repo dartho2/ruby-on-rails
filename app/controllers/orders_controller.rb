@@ -15,14 +15,18 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @order= Order.new
+    # @product = Product.new(params[:id])
+    @order = Order.new
+    # @order.product_order.build
     @order.product.build
     @order.build_customer
+# 3.times { @order.product.build }
 
   end
 
   def create
-    @order = Order.new(params_order)
+    @order = Order.create(params_order)
+
     if @order.save
 
       flash[:warning] = "Correct Create - #{@order.customer.name} - #{@order.product.name}"

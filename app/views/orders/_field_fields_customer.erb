@@ -3,9 +3,15 @@
       <%= customer.label :name %>
       <%= customer.text_field :name, class: 'form-control' %>
     </div>
-    <%= render 'form_fields_product', f: f %>
 
+    <%= f.fields_for :product do |builder| %>
+        <%= render 'product_fields', f: builder %>
+
+        <% end %>
 
 
 <% end %>
+
+
+
 
