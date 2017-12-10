@@ -17,9 +17,12 @@ class OrdersController < ApplicationController
   def new
     # @product = Product.new(params[:id])
     @order = Order.new
-    # @order.product_order.build
-    @order.product.build
-    @order.build_customer
+
+    # order = @order.product.build
+    # order.product_order.build
+    # @order.product_order.build.product
+     @order.product.build
+  @order.build_customer
 # 3.times { @order.product.build }
 
   end
@@ -52,7 +55,7 @@ class OrdersController < ApplicationController
   private
   def params_order
     params.require(:order)
-      .permit(:id, customer_attributes: [:name], product_attributes: [:name, :price], category: [:category_id])
+      .permit(customer_attributes: [:name], product_attributes: [:name, :price, product_order_attributes: [:quantity]], category: [:category_id])
   end
 
 end
