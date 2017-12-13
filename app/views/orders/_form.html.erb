@@ -9,14 +9,10 @@
           <%= builder.label :name %>
           <%= builder.text_field :name, class: 'form-control' %>
         </div>
-
-        <%= f.fields_for :product do |product| %>
-            <%= render 'product_fields', f: product %>
-        <% end %>
-
-
     <% end %>
-
+    <%= f.fields_for :product  do |product| %>
+        <%= render 'product_fields', f: product %>
+    <% end %>
 
     <%= link_to_add_fields 'Product', f, :product %>
     <%= f.submit class: "add_fields btn btn-success add-more" %>

@@ -7,7 +7,7 @@
 
 
 
-    <%= f.fields_for :product_order, @order.product_order.build.product do |builder| %>
+    <%= f.fields_for :product_order, @order.product_order do |builder| %>
 
         <%= render 'product_order_fields', f: builder %>
     <% end %>

@@ -56,4 +56,5 @@ class ProductsController < ApplicationController
     params.require(:product).permit(:name, :id, :parent_id, :price, :category_id).merge(parent_id: parent_id)
   end
 
+
 end
