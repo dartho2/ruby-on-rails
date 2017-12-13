@@ -1,15 +1,31 @@
-<%= form_for(@order, local: true) do |f| %>
+<%= form_for(@order) do |f| %>
     <% @order.errors.full_messages.each do |error| %>
         <div class="alert alert-danger">
           <%= error %>
         </div>
     <% end %>
+    <%= f.fields_for :customer do |builder| %>
+        <div class="form-group">
+          <%= builder.label :name %>
+          <%= builder.text_field :name, class: 'form-control' %>
+        </div>
 
-    <%= render 'field_fields_customer', f: f %>
+        <%= f.fields_for :product do |product| %>
+            <%= render 'product_fields', f: product %>
+        <% end %>
 
 
+    <% end %>
 
-    <%= f.submit class: "add_fields btn btn-success add-more"%>
 
+    <%= link_to_add_fields 'Product', f, :product %>
+    <%= f.submit class: "add_fields btn btn-success add-more" %>
 <% end %>
+
+
+
+
+
+
+
 

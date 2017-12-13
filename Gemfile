@@ -20,6 +20,7 @@ end
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 gem 'simple_form'
+gem 'nested_form'
 gem 'jquery-rails'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'

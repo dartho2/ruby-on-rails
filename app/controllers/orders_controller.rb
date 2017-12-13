@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
   #
 
 
-  skip_before_action :verify_authenticity_token
+  # skip_before_action :verify_authenticity_token
 
   def index
     @orders = Order.all
@@ -15,19 +15,21 @@ class OrdersController < ApplicationController
   end
 
   def new
-    # @product = Product.new(params[:id])
-    @order = Order.new
 
-    # order = @order.product.build
-    # order.product_order.build
-    # @order.product_order.build.product
-     @order.product.build
-  @order.build_customer
-# 3.times { @order.product.build }
+    @order = Order.new
+    @order.build_customer
+
+
+
+
+
+
+
 
   end
 
   def create
+
     @order = Order.create(params_order)
 
     if @order.save
@@ -52,11 +54,12 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
 
+
   private
   def params_order
     params.require(:order)
-      .permit(customer_attributes: [:name], product_attributes: [:name, :price, product_order_attributes: [:quantity]], category: [:category_id])
+      .permit([customer_attributes: [:name], product_attributes: [:name, :price, product_order_attributes: [:quantity]]])
+    # params.require(:order).permit(customer_attributes: [Customer.attribute_names.map(&:to_sym)], product_attributes: Product.attribute_names.map(&:to_sym))
   end
 
 end
-

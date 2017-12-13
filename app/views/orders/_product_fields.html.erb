@@ -1,0 +1,14 @@
+
+    <div class="form-inline">
+  <%= f.label :name_product_ADD %>
+  <%= f.collection_select(:name, Product.all, :name, :name, {multiple: true}, {class: 'form-control'}) %>
+  <%= f.label :price %>
+  <%= f.text_field :price, class: 'form-control' %>
+
+
+
+    <%= f.fields_for :product_order, @order.product_order.build.product do |builder| %>
+
+        <%= render 'product_order_fields', f: builder %>
+    <% end %>
+    </div>

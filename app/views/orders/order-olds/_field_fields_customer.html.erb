@@ -4,14 +4,14 @@
       <%= customer.text_field :name, class: 'form-control' %>
     </div>
 
+
     <%= f.fields_for :product do |builder| %>
         <%= render 'product_fields', f: builder %>
 
-        <% end %>
 
 
+    <% end %>
 <% end %>
-
 
 
 
