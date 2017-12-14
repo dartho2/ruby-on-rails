@@ -11,7 +11,7 @@ class Product < ApplicationRecord
 #   nie można utworzyc orderu  kiedy jest.. ##TODO
 
 
-  has_many :product_order
+  has_many :product_order, inverse_of: :product
   has_many :order, through: :product_order
 
   accepts_nested_attributes_for :product_order

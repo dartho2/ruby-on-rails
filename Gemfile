@@ -21,6 +21,7 @@ end
 gem 'puma', '~> 3.7'
 gem 'simple_form'
 gem 'nested_form'
+gem "cocoon"
 gem 'jquery-rails'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -50,6 +51,7 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
   gem 'mysql2', '>= 0.3.18', '< 0.5'
+
 end
 
 group :development do

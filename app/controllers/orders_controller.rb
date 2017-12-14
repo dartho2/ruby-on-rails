@@ -16,12 +16,19 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @order.build_customer
+
+
   end
 
   def create
-    @order = Order.create(params_order)
+    # @product = Order.new(params[:id])
+    # @product_order = @orders.map{|r| @order.product_order.build}
+    # @product = Product.new(update_params_order(params[:id]))
+
+    @order = Order.update(params_order)
+
     if @order.save
-      flash[:warning] = "Correct Create - #{@order.customer.name} - #{@order.product.name}"
+      flash[:warning] = "Correct Create- #{@product.ids} "
       redirect_to orders_path
     else
       flash[:warning] = "Incorrect Create"
@@ -38,11 +45,12 @@ class OrdersController < ApplicationController
   end
 
   def edit
-    @order = Order.find(params[:id])
+ @order = Order.find(params[:id])
   end
 
   def update
-    @order = Order.find(params[:id])
+    # @order = Order.find(params[:id])
+
     if @order.update(params_order)
       flash[:success] = "Produkt  - został zaktualizowany"
       redirect_to products_path
@@ -56,9 +64,18 @@ class OrdersController < ApplicationController
   private
   def params_order
     params.require(:order)
-      .permit([customer_attributes: [:name], product_attributes: [:name, :price, product_order_attributes: [:quantity]]])
-    # params.require(:order).permit(customer_attributes: [Customer.attribute_names.map(&:to_sym)], product_attributes: [Product.attribute_names.map(&:to_sym), product_order_attributes:[ProductOrder.attribute_names.map(&:to_sym)]])
+      .permit([customer_attributes: [:id, :name], product_order_attributes: [:quantity, product_attributes: [:id, :name, :price,]]])
   end
+def product_orders
+  params.require(:product_order)
+    .permit(:order_id, :product_id).merge(order_id: @product.id)
+
+end
+  def params_product
+    params.require(:product)
+      .permit(product_order_attributes: [product_attributes: [:id, :price]])
+  end
+
 
 
 end
