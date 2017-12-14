@@ -12,7 +12,7 @@ class Product < ApplicationRecord
 
 
   has_many :product_order, inverse_of: :product
-  has_many :order, through: :product_order
+  has_many :order, through: :product_order , inverse_of: :product
 
   accepts_nested_attributes_for :product_order
 

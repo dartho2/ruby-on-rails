@@ -25,10 +25,11 @@ class OrdersController < ApplicationController
     # @product_order = @orders.map{|r| @order.product_order.build}
     # @product = Product.new(update_params_order(params[:id]))
 
-    @order = Order.update(params_order)
+    @order = Order.new(params_order)
+    # @product = Product.new(params_update(:id))
 
     if @order.save
-      flash[:warning] = "Correct Create- #{@product.ids} "
+      flash[:warning] = "Correct Create- "
       redirect_to orders_path
     else
       flash[:warning] = "Incorrect Create"
@@ -46,10 +47,12 @@ class OrdersController < ApplicationController
 
   def edit
  @order = Order.find(params[:id])
+
   end
 
   def update
-    # @order = Order.find(params[:id])
+    @order = Order.find(params[:id])
+    # @product = Order.new(update_params(params[:id]))
 
     if @order.update(params_order)
       flash[:success] = "Produkt  - został zaktualizowany"
@@ -64,18 +67,8 @@ class OrdersController < ApplicationController
   private
   def params_order
     params.require(:order)
-      .permit([customer_attributes: [:id, :name], product_order_attributes: [:quantity, product_attributes: [:id, :name, :price,]]])
+      .permit([customer_attributes: [:id, :name], product_order_attributes: [:id, :quantity, product_attributes: [:id, :parent_id, :name, :price,]]])
   end
-def product_orders
-  params.require(:product_order)
-    .permit(:order_id, :product_id).merge(order_id: @product.id)
-
-end
-  def params_product
-    params.require(:product)
-      .permit(product_order_attributes: [product_attributes: [:id, :price]])
-  end
-
 
 
 end

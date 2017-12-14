@@ -1,11 +1,11 @@
 <div class="form-inline">
-  <%= f.hidden_field :order_id %>
-  <%= f.hidden_field :product_id %>
+  <%= f.hidden_field :id %>
   <%= f.label :quantity %>
   <%= f.number_field :quantity, class: 'form-control bfh-number' %>
-</div>
+
   <%= f.fields_for :product, @order.product.build do |builder| %>
       <%= render 'product_fields', f: builder %>
   <% end %>
   <br><br>
 
+</div>

@@ -1,5 +1,7 @@
   <%= f.label :name_product_ADD %>
-  <%= f.collection_select(:ids, Product.all, :id, :name, {},{class: 'form-control'}) %>
+  <%= f.hidden_field :id %>
+  <%= f.hidden_field :parent_id %>
+  <%= f.collection_select(:id, Product.all, :id, :name, {},{class: 'form-control'}) %>
   <%= f.label :price %>
   <%= f.text_field :price, class: 'form-control' %>
 
