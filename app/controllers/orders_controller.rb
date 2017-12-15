@@ -11,12 +11,18 @@ class OrdersController < ApplicationController
 
   def index
     @orders = Order.all
+    @product = Product.all
+    @product_order = ProductOrder.all
+    total_price
   end
 
   def new
     @order = Order.new
     @order.build_customer
 
+
+  end
+  def total_price
 
   end
 

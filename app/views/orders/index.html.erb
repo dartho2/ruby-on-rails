@@ -5,6 +5,9 @@
     <th>Customer</th>
     <th>Zamowienie</th>
     <th>Quantity</th>
+    <th>Price</th>
+    <th>Total Price</th>
+    <th>Action</th>
   </tr>
   </thead>
   <% @orders.each do |order| %>
@@ -13,10 +16,16 @@
         <td><%= order.customer.name %></td>
         <td><%= order.product.map(&:name).join(', ') %></td>
         <td><%= order.product_order.map(&:quantity).join(', ') %></td>
-
-
+        <td><%= order.product.map(&:price).join(', ') %></td>
         <td>
-          <%= link_to "Delete", order, method: :delete, class: 'btn btn-danger' %>
+
+      <%= order.total_price %>
+
+        </td>
+
+
+
+        <td> <%= link_to "Delete", order, method: :delete, class: 'btn btn-danger' %>
           <%= link_to "Edit", edit_order_path(order), class: 'btn btn-warning' %>
 
         </td>
