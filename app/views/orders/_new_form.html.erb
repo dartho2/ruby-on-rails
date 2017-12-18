@@ -1,0 +1,37 @@
+<%= form_for(@order) do |f| %>
+    <% @order.errors.full_messages.each do |error| %>
+        <div class="alert alert-danger">
+          <%= error %>
+        </div>
+
+    <% end %>
+    <%= f.fields_for :customer do |builder| %>
+        <div class="form-group">
+          <%= builder.label :name %>
+          <%= builder.text_field :name, class: 'form-control' %>
+        </div>
+
+        <%= f.fields_for :product_order do |product_order| %>
+            <div class="form-inline">
+              <%= product_order.hidden_field :id %>
+              <%= product_order.label :quantity %>
+              <%= product_order.number_field :quantity, class: 'form-control bfh-number' %>
+              <%= product_order.fields_for :product do |f| %>
+                  <%= f.label :name_product_ADD %>
+                  <%= f.hidden_field :id %>
+                  <%= f.hidden_field :parent_id %>
+                  <%= f.collection_select(:id, Product.where(deleted: false) , :id, :name,  {},{class: 'form-control'}) %>
+                  <%= f.label :price %>
+                  <%= f.text_field :price, class: 'form-control' %>
+            <% end %>
+              <br><br>
+
+            </div>
+
+        <% end %>
+        <% end %>
+    <%= link_to_add_fields '+', f, :product_order %>
+
+    <%= f.submit class: "add_fields btn btn-success add-more" %>
+    <% end %>
+

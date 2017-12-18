@@ -11,35 +11,26 @@ class OrdersController < ApplicationController
 
   def index
     @orders = Order.all
-    @product = Product.all
-    @product_order = ProductOrder.all
-    total_price
+    # @product = Product.all  TODO usunac
+    # @product_order = ProductOrder.all TODO usunac
+    # total_price TODO usunac
   end
+
 
   def new
     @order = Order.new
     @order.build_customer
-
-
-  end
-  def total_price
-
   end
 
   def create
-    # @product = Order.new(params[:id])
-    # @product_order = @orders.map{|r| @order.product_order.build}
-    # @product = Product.new(update_params_order(params[:id]))
-
     @order = Order.new(params_order)
-    # @product = Product.new(params_update(:id))
 
     if @order.save
       flash[:warning] = "Correct Create- "
-      redirect_to orders_path
+      render 'edit'
     else
       flash[:warning] = "Incorrect Create"
-      render 'new'
+      render 'edit'
     end
   end
 
@@ -53,28 +44,30 @@ class OrdersController < ApplicationController
 
   def edit
  @order = Order.find(params[:id])
-
   end
+
 
   def update
-    @order = Order.find(params[:id])
-    # @product = Order.new(update_params(params[:id]))
+   @order = Order.find(params[:id])
 
-    if @order.update(params_order)
-      flash[:success] = "Produkt  - został zaktualizowany"
-      redirect_to products_path
+    if @order.update_attributes(params_order)
+      flash[:success] = "Produkt  - został zaktualizowany #{@order.product.inspect} "
+      render 'edit'
     else
-      flash[:warning] = "Błąd aktualizacji -  "
-      render 'new'
+      flash[:warning] = "Błąd aktualizacji - #{@product.inspect}} "
+      render 'edit'
     end
-  end
+    end
+
 
 
   private
   def params_order
     params.require(:order)
-      .permit([customer_attributes: [:id, :name], product_order_attributes: [:id, :quantity, product_attributes: [:id, :parent_id, :name, :price,]]])
+      .permit([customer_attributes: [:id, :name], product_order_attributes: [:id, :quantity, product_attributes: [:id, :name, :price,]]])
   end
-
-
-end
+  def params_orderss
+    params.require(:order)
+      .permit(:id, :name, :price)
+  end
+ end

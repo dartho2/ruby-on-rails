@@ -5,9 +5,17 @@ class ProductOrder < ApplicationRecord
 
   accepts_nested_attributes_for :product
 
+
+
+
+
   def product_attributes=(attributes)
     if attributes['id'].present?
+
+
       self.product = Product.find(attributes['id'])
+
+
     end
     super
   end

@@ -1,6 +1,5 @@
 class ProductsController < ApplicationController
 
-
   def index
     @products = []
     products = Product.where(deleted: false)
@@ -8,6 +7,7 @@ class ProductsController < ApplicationController
       @products.push(product) unless Product.where(parent_id: product.id).any?
     end
   end
+
 
   def new
     @product = Product.new
@@ -26,9 +26,10 @@ class ProductsController < ApplicationController
   end
 
   def update
+    @product_destroy = Product.find(params[:id])
     @product = Product.new(update_params(params[:id]))
 
-    if @product.save
+    if @product.save && @product_destroy.update(deleted: true)
       flash[:success] = "Produkt - #{@product.name}  - został zaktualizowany"
       redirect_to products_path
     else
@@ -56,6 +57,7 @@ class ProductsController < ApplicationController
   def update_params parent_id
     params.require(:product).permit(:name, :id, :parent_id, :price, :category_id).merge(parent_id: parent_id)
   end
+
 
 
 end
