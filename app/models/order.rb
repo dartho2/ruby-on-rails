@@ -12,6 +12,7 @@ def total_price
     sum + (a.quantity * a.product.price)
   end
 end
+
 end
 
 

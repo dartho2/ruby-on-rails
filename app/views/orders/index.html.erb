@@ -14,7 +14,7 @@
       <tr>
         <td><%= order.id %></td>
         <td><%= order.customer.name %></td>
-        <td><%= order.product.map(&:name).join(', ') %></td>
+        <td><%= order.product.map(&:name).join(', ') %></br></td>
         <td><%= order.product_order.map(&:quantity).join(', ') %></td>
         <td><%= order.product.map(&:price).join(', ') %></td>
         <td>

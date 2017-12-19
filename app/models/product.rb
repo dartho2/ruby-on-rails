@@ -3,12 +3,12 @@ class Product < ApplicationRecord
   before_update :cipka
 
 
-  # validates :name,
-  #           presence: true,
-  #           length: {minimum: 3}
-  # validates :price,
-  #           presence: true,
-  #           numericality: {only_integer: true, greater_than: 0}
+  validates :name,
+            presence: true,
+            length: {minimum: 3}
+  validates :price,
+            presence: true,
+            numericality: {only_integer: true, greater_than: 0}
 
   #  belongs_to :category
   #
@@ -20,6 +20,11 @@ class Product < ApplicationRecord
 
   accepts_nested_attributes_for :product_order
 
+
+
+
+
+
   private
   def cipka
     product = Product.find(self.id)
@@ -28,11 +33,12 @@ class Product < ApplicationRecord
     else
       puts self.price
       puts product.price
-     Product.find(self.id).update(deleted: true)
+     Product.find(product.id).update(deleted: true)
         product = Product.create(name: self.name, parent_id: product.id, price: self.price)
         product.save
 
         end
-      end
+  end
+
 end
 
