@@ -1,19 +1,7 @@
 class OrdersController < ApplicationController
 
-  #   przy tworzeniu orderu tworzy nowy produkt - brak aktualizacji produktu
-  #
-  #
-  #
-  #
-
-
-  # skip_before_action :verify_authenticity_token
-
   def index
     @orders = Order.all
-    # @product = Product.all  TODO usunac
-    # @product_order = ProductOrder.all TODO usunac
-    # total_price TODO usunac
   end
 
 
