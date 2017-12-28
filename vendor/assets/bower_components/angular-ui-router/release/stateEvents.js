@@ -103,9 +103,9 @@ var $stateChangeSuccess;
  * ### Deprecation warning: use [[TransitionService.onStart]] and [[Transition.promise]], or [[Transition.onError]]
  *
  * It's important to note that if you
- * have any errors in your resolve functions (javascript errors, non-existent services, etc)
+ * have any errors.html.rb in your resolve functions (javascript errors.html.rb, non-existent services, etc)
  * they will not throw traditionally. You must listen for this $stateChangeError event to
- * catch **ALL** errors.
+ * catch **ALL** errors.html.rb.
  *
  * Additional arguments to the event handler are provided:
  * - `toState`: the Transition Target state

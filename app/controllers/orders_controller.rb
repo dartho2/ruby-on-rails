@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-
+  before_action :require_user_admin
   def index
     @orders = Order.all
   end

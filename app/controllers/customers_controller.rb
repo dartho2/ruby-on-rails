@@ -1,4 +1,5 @@
 class CustomersController < ApplicationController
+  before_action :require_user_admin
   def index
     @customer = Customer.where(deleted: false)
   end

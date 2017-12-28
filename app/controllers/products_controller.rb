@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-
+  before_action :require_user_admin
   def index
     @products = []
     products = Product.where(deleted: false)

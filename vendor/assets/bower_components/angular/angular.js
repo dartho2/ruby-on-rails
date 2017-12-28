@@ -106,7 +106,7 @@ function minErr(module, ErrorConstructor) {
       return match;
     });
 
-    message += '\nhttp://errors.angularjs.org/1.6.8/' +
+    message += '\nhttp://errors.html.rb.angularjs.org/1.6.8/' +
       (module ? module + '/' : '') + code;
 
     for (i = 0, paramPrefix = '?'; i < templateArgs.length; i++, paramPrefix = '&') {
@@ -4843,7 +4843,7 @@ function annotate(fn, strictDi, name) {
  *      decorated or delegated to.
  *
  * @example
- * Here we decorate the {@link ng.$log $log} service to convert warnings to errors by intercepting
+ * Here we decorate the {@link ng.$log $log} service to convert warnings to errors.html.rb by intercepting
  * calls to {@link ng.$log#error $log.warn()}.
  * ```js
  *   $provide.decorator('$log', ['$delegate', function($delegate) {
@@ -9414,7 +9414,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
           }
         }
       } catch (e) {
-        // turns out that under some circumstances IE9 throws errors when one attempts to read
+        // turns out that under some circumstances IE9 throws errors.html.rb when one attempts to read
         // comment's node value.
         // Just ignore it and continue. (Can't seem to reproduce in test case.)
       }
@@ -11176,7 +11176,7 @@ function $$IsDocumentHiddenProvider() {
  * ## Example:
  *
  * The example below will overwrite the default `$exceptionHandler` in order to (a) log uncaught
- * errors to the backend for later inspection by the developers and (b) to use `$log.warn()` instead
+ * errors.html.rb to the backend for later inspection by the developers and (b) to use `$log.warn()` instead
  * of `$log.error()`.
  *
  * ```js
@@ -14700,10 +14700,10 @@ function $LogProvider() {
 
   this.$get = ['$window', function($window) {
     // Support: IE 9-11, Edge 12-14+
-    // IE/Edge display errors in such a way that it requires the user to click in 4 places
+    // IE/Edge display errors.html.rb in such a way that it requires the user to click in 4 places
     // to see the stack trace. There is no way to feature-detect it so there's a chance
     // of the user agent sniffing to go wrong but since it's only about logging, this shouldn't
-    // break apps. Other browsers display errors in a sensible way and some of them map stack
+    // break apps. Other browsers display errors.html.rb in a sensible way and some of them map stack
     // traces along source maps if available so it makes sense to let browsers display it
     // as they want.
     var formatStackTrace = msie || /\bEdge\//.test($window.navigator && $window.navigator.userAgent);
@@ -23471,7 +23471,7 @@ FormController.prototype = {
    *
    * Input elements using ngModelController do this automatically when they are destroyed.
    *
-   * Note that only the removed control's validation state (`$errors`etc.) will be removed from the
+   * Note that only the removed control's validation state (`$errors.html.rb`etc.) will be removed from the
    * form. `$dirty`, `$submitted` states will not be changed, because the expected behavior can be
    * different from case to case. For example, removing the only `$dirty` control from a form may or
    * may not mean that the form is still `$dirty`.
@@ -23593,7 +23593,7 @@ FormController.prototype = {
  *        `ng-invalid-my-error` classes and can be bound to as `{{ someForm.$error.myError }}`.
  * @param {boolean} isValid Whether the current state is valid (true), invalid (false), pending
  *        (undefined),  or skipped (null). Pending is used for unfulfilled `$asyncValidators`.
- *        Skipped is used by AngularJS when validators do not run because of parse errors and when
+ *        Skipped is used by AngularJS when validators do not run because of parse errors.html.rb and when
  *        `$asyncValidators` do not run because any of the `$validators` failed.
  * @param {NgModelController | FormController} controller - The controller whose validity state is
  *        triggering the change.
@@ -29103,7 +29103,7 @@ NgModelController.prototype = {
     var viewValue = this.$$lastCommittedViewValue;
     // Note: we use the $$rawModelValue as $modelValue might have been
     // set to undefined during a view -> model update that found validation
-    // errors. We can't parse the view here, since that could change
+    // errors.html.rb. We can't parse the view here, since that could change
     // the model although neither viewValue nor the model on the scope changed
     var modelValue = this.$$rawModelValue;
 
@@ -29640,7 +29640,7 @@ function setupModelWatcher(ctrl) {
  *        classes and can be bound to as `{{ someForm.someControl.$error.myError }}`.
  * @param {boolean} isValid Whether the current state is valid (true), invalid (false), pending (undefined),
  *                          or skipped (null). Pending is used for unfulfilled `$asyncValidators`.
- *                          Skipped is used by Angular when validators do not run because of parse errors and
+ *                          Skipped is used by Angular when validators do not run because of parse errors.html.rb and
  *                          when `$asyncValidators` do not run because any of the `$validators` failed.
  */
 addSetValidityMethod({
@@ -32967,7 +32967,7 @@ var SelectController =
 
   self.selectValueMap = {}; // Keys are the hashed values, values the original values
 
-  // If the ngModel doesn't get provided then provide a dummy noop version to prevent errors
+  // If the ngModel doesn't get provided then provide a dummy noop version to prevent errors.html.rb
   self.ngModelCtrl = noopNgModelController;
   self.multiple = false;
 

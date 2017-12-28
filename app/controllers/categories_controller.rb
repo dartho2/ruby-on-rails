@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-
+  before_action :require_user_admin
   def index
     @categories = Category.where(deleted: false)
   end
