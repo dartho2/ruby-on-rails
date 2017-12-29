@@ -2,7 +2,9 @@
 @import "bootstrap";
 
 /* universal */
-
+.table-condensed > tbody > tr.hiddenRow > td {
+    padding-top: 0px;
+}
 body {
   padding-top: 60px;
 }
